@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './question.dart';
+import './answer.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -20,17 +21,28 @@ class _MyAppState extends State<MyApp> {
   void _answerQuestion() {
     // _questionIndex
     setState(() {
-        _questionIndex = 0;
+      _questionIndex =
+          _questionIndex >= 2 ? _questionIndex : _questionIndex + 1;
     });
-  
-  } 
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<String> questions = [
-      "Whats your favourite color?",
-      "Whats your favourite animal?",
-       "Whats your favourite country?",
-    ];
+    // List<String> questions = [
+    //   "Whats your favourite color?",
+    //   "Whats your favourite animal?",
+    //   "Whats your favourite country?",
+    // ];
+    var questions = [
+      {
+        "questionText": "Whats your favourite color",
+        "answers": ["Black", "Red", "Blue", "Green", "White"]
+      },
+        {
+        "questionText": "Whats your favourite Animal",
+        "answers": ["cat", "dog", "rat", "horse", "pussy"]
+      }
+      ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -38,27 +50,9 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(children: <Widget>[
           Question(questions[_questionIndex]),
-          RaisedButton(
-            child: Text("Answer 1"),
-            onPressed: _answerQuestion,
-          ),
-          RaisedButton(
-            child: Text("Answer 2"),
-            onPressed: () {
-              print("Answer 3 ");
-              setState(() {
-                _questionIndex = 1;
-              });
-            },
-          ),
-          RaisedButton(
-            child: Text("Answer 3"),
-            onPressed: ()  {
-              setState(() {
-                _questionIndex = 2;
-              });
-            },
-          ),
+          Answer(_answerQuestion),
+          Answer(_answerQuestion),
+          Answer(_answerQuestion),
         ]),
       ),
     );
