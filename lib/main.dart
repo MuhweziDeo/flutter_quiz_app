@@ -9,16 +9,16 @@ void main() => runApp(MyApp());
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
-  void answerQuestion() {
-    // questionIndex
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
+  void _answerQuestion() {
+    // _questionIndex
     setState(() {
-        questionIndex = 0;
+        _questionIndex = 0;
     });
   
   }
@@ -35,17 +35,17 @@ class MyAppState extends State<MyApp> {
           title: Text("QUIZ APP"),
         ),
         body: Column(children: <Widget>[
-          Text(questions[questionIndex]),
+          Text(questions[_questionIndex]),
           RaisedButton(
             child: Text("Answer 1"),
-            onPressed: answerQuestion,
+            onPressed: _answerQuestion,
           ),
           RaisedButton(
             child: Text("Answer 2"),
             onPressed: () {
               print("Answer 3 ");
               setState(() {
-                questionIndex = 1;
+                _questionIndex = 1;
               });
             },
           ),
@@ -53,7 +53,7 @@ class MyAppState extends State<MyApp> {
             child: Text("Answer 3"),
             onPressed: ()  {
               setState(() {
-                questionIndex = 2;
+                _questionIndex = 2;
               });
             },
           ),
